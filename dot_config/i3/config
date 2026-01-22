@@ -1,0 +1,182 @@
+# i3 config file (v4)
+set $mod Mod4
+
+# Colors - minimalist palette with muted teal
+set $bg_primary #1c1c1c
+set $bg_secondary #2d2d2d
+set $fg_primary #e8e8e8
+set $fg_secondary #b0b0b0
+set $accent_teal #5fb3b3
+set $accent_dark #3a7a7a
+set $urgent #d75f5f
+
+font pango:monospace 10
+
+# Apps
+set $term alacritty
+set $browser firefox
+
+# Exec
+exec --no-startup-id feh --randomize --bg-fill /usr/share/wallpapers/*
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id nm-applet
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Key bindings
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+Shift+Return exec --no-startup-id $browser
+bindsym $mod+q kill
+bindsym $mod+p exec dmenu_run -i -nb '$bg_primary' -sb '$accent_teal' -sf '$bg_primary' -nf '$fg_primary' -fn 'monospace-10' -b -l 7 -p 'Run:'
+bindsym $mod+Shift+s exec flameshot gui
+bindsym $mod+Shift+slash exec --no-startup-id emacs-lucid
+
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Split orientations
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Enter fullscreen mode
+bindsym $mod+f fullscreen toggle
+
+# Change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus parent/child container
+bindsym $mod+a focus parent
+bindsym $mod+d focus child
+
+# Switch to workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Reload configuration
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Lock screen
+bindsym $mod+Escape exec --no-startup-id i3lock -c 1c1c1c
+
+# Binds for rotary encoder
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Toggle Display Script
+#bindsym $mod+slash exec --no-startup-id ~/.config/i3/toggle_display.sh
+
+# Function keys
+bindsym F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym F4 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym F5 exec --no-startup-id brightnessctl s 5%-
+bindsym F6 exec --no-startup-id brightnessctl s 5%+
+
+# Resize mode
+mode "resize" {
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Window rules
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# Default layout for workspaces
+for_window [workspace="1"] layout toggle splith 
+for_window [workspace="2"] layout tabbed
+for_window [workspace="3"] layout toggle splith
+
+# Workspace class assignments
+assign [class="Alacritty"] 1
+assign [class="org.mozilla.firefox"] 2
+assign [class="VSCodium"] 3
+assign [class="Emacs"] 3
+assign [class="steam"] 4
+assign [class="Lutris"] 5
+
+# Colors - Muted teal theme
+client.focused          $accent_teal $accent_teal $bg_primary $accent_dark $accent_teal
+client.focused_inactive $bg_secondary $bg_secondary $fg_secondary $bg_secondary $bg_secondary
+client.unfocused        $bg_secondary $bg_primary $fg_secondary $bg_primary $bg_primary
+client.urgent           $urgent $urgent $fg_primary $urgent $urgent
+client.placeholder      $bg_primary $bg_primary $fg_secondary $bg_primary $bg_primary
+client.background       $bg_primary
+
+# Status bar
+#bar {   
+#    colors {
+#        background $bg_primary
+#        statusline $fg_primary
+#        separator $accent_teal
+        
+#        focused_workspace   $accent_teal $accent_teal $bg_primary
+#        active_workspace    $bg_secondary $bg_secondary $fg_primary
+#        inactive_workspace  $bg_secondary $bg_primary $fg_secondary
+#        urgent_workspace    $urgent $urgent $fg_primary
+#        binding_mode        $urgent $urgent $fg_primary
+#    }
+#}

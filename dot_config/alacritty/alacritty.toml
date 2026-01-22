@@ -1,0 +1,91 @@
+# Alacritty configuration
+[window]
+opacity = 0.95
+padding = { x = 8, y = 8 }
+decorations = "full"
+dynamic_title = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "monospace", style = "Regular" }
+bold = { family = "monospace", style = "Bold" }
+italic = { family = "monospace", style = "Italic" }
+bold_italic = { family = "monospace", style = "Bold Italic" }
+size = 11.0
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
+
+[colors]
+
+[colors.primary]
+background = "#1c1c1c"  # $bg_primary
+foreground = "#e8e8e8"  # $fg_primary
+
+[colors.cursor]
+text = "#1c1c1c"
+cursor = "#5fb3b3"  # $accent_teal
+
+[colors.selection]
+text = "#1c1c1c"
+background = "#5fb3b3"  # $accent_teal
+
+[colors.normal]
+black = "#1c1c1c"
+red = "#d75f5f"      # $urgent
+green = "#5fb3b3"    # $accent_teal
+yellow = "#d7af87"
+blue = "#5f87af"
+magenta = "#af87af"
+cyan = "#5fb3b3"     # $accent_teal
+white = "#e8e8e8"    # $fg_primary
+
+[colors.bright]
+black = "#2d2d2d"    # $bg_secondary
+red = "#ff8787"
+green = "#87d7d7"
+yellow = "#ffd787"
+blue = "#87afd7"
+magenta = "#d7afd7"
+cyan = "#87d7d7"
+white = "#ffffff"
+
+[colors.dim]
+black = "#0f0f0f"
+red = "#af5f5f"
+green = "#3a7a7a"    # $accent_dark
+yellow = "#af875f"
+blue = "#5f5f87"
+magenta = "#875f87"
+cyan = "#3a7a7a"     # $accent_dark
+white = "#b0b0b0"    # $fg_secondary
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = "#5fb3b3"
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
+
+
+[[mouse.bindings]]
+mouse = "Right"
+mods = "Super"
+action = "Copy"
+
+[[mouse.bindings]]
+mouse = "Left"
+mods = "Super"
+action = "Paste"
