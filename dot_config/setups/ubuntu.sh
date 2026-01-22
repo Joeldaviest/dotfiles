@@ -27,10 +27,6 @@ echo "=== Installing Oh My Zsh  ==="
 RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sudo chsh -s "$(which zsh)" "$USER"
 
-echo "=== Configure Zsh ==="
-cp -f "$SCRIPT_DIR/zsh/.zshrc" "$HOME/.zshrc"
-chmod 644 "$HOME/.zshrc"
-
 echo "=== Installing NetworkManager==="
 sudo apt install -y \
     network-manager \
