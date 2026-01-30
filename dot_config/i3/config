@@ -30,7 +30,6 @@ bindsym $mod+Shift+Return exec --no-startup-id $browser
 bindsym $mod+q kill
 bindsym $mod+p exec dmenu_run -i -nb '$bg_primary' -sb '$accent_teal' -sf '$bg_primary' -nf '$fg_primary' -fn 'monospace-10' -b -l 7 -p 'Run:'
 bindsym $mod+Shift+s exec flameshot gui
-bindsym $mod+Shift+slash exec --no-startup-id emacs-lucid
 
 # Change focus
 bindsym $mod+Left focus left
@@ -165,18 +164,3 @@ client.unfocused        $bg_secondary $bg_primary $fg_secondary $bg_primary $bg_
 client.urgent           $urgent $urgent $fg_primary $urgent $urgent
 client.placeholder      $bg_primary $bg_primary $fg_secondary $bg_primary $bg_primary
 client.background       $bg_primary
-
-# Status bar
-#bar {   
-#    colors {
-#        background $bg_primary
-#        statusline $fg_primary
-#        separator $accent_teal
-        
-#        focused_workspace   $accent_teal $accent_teal $bg_primary
-#        active_workspace    $bg_secondary $bg_secondary $fg_primary
-#        inactive_workspace  $bg_secondary $bg_primary $fg_secondary
-#        urgent_workspace    $urgent $urgent $fg_primary
-#        binding_mode        $urgent $urgent $fg_primary
-#    }
-#}
