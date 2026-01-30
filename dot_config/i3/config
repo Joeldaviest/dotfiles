@@ -153,7 +153,6 @@ for_window [workspace="3"] layout toggle splith
 assign [class="Alacritty"] 1
 assign [class="org.mozilla.firefox"] 2
 assign [class="VSCodium"] 3
-assign [class="Emacs"] 3
 assign [class="steam"] 4
 assign [class="Lutris"] 5
 
